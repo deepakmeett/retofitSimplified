@@ -21,6 +21,9 @@ public class Hero {
         this.bio = bio;
     }
 
+    public Hero() {
+    }
+
     public String getName() {
         return name;
     }

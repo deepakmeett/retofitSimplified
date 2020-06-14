@@ -9,6 +9,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -30,10 +31,13 @@ public class MainActivity extends AppCompatActivity {
         textView = findViewById( R.id.list_item );
         imageView = findViewById( R.id.image );
         
-        Retrofit retrofit = new Retrofit.Builder().baseUrl( Api.BASE_URL )
-                .addConverterFactory( GsonConverterFactory.create() ).build();
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl( Api.BASE_URL )
+                .addConverterFactory( GsonConverterFactory.create() )
+                .build();
         
         Api api = retrofit.create( Api.class );
+        
         Call<List<Hero>> call = api.getHeroes();
         
         call.enqueue( new Callback<List<Hero>>() {
